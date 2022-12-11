@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import Word from './components/Word'
+import React, { useState, useEffect } from "react";
+import Word from "./components/Word";
 
 const options = {
   method: "GET",
@@ -12,8 +12,13 @@ const options = {
 const App = () => {
   const [entryCount, setEntryCount] = useState(0);
   const [pageCount, setPageCount] = useState(1);
-  const [currentPage, setCurrentPage] = useState('')
-  const [currentWord, setCurrentWord] = useState('')
+  const [currentPage, setCurrentPage] = useState("");
+  const [currentWord, setCurrentWord] = useState("");
+
+  // useEffect(() => {
+  //   const word = document.querySelector('.word')
+  //   word.textContent = currentWord;
+  // });
 
   const shuffleResults = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -33,38 +38,49 @@ const App = () => {
   };
 
   const getDictionary = async () => {
-    console.log('call')
     const response = await fetch(
       `https://lexicala1.p.rapidapi.com/search-entries?source=global&language=sv&page=${pageCount}&page-length=30&sample=30&text=`,
       options
     );
     let wordsData = await response.json();
-    wordsData = filterResults(wordsData);
-    wordsData = shuffleResults(wordsData);
-    return wordsData;
+    return new Promise((resolve) => {
+      wordsData = filterResults(wordsData);
+      wordsData = shuffleResults(wordsData);
+      console.log(wordsData)
+      setCurrentPage(wordsData)
+      resolve(wordsData);
+    });
   };
+
+  let page = ''
 
   const generateWord = async () => {
     console.log(pageCount);
     console.log(entryCount);
-    console.log(currentPage)
+    console.log(currentPage);
     if (!currentPage) {
-      console.log('ok')
-      setCurrentPage(await getDictionary());
-      console.log(currentPage)
+      page = await getDictionary()
+      setCurrentWord(page[entryCount].headword.text);
     }
-    setCurrentWord(currentPage[entryCount].headword.text)
-    if (entryCount === 29) {
-      setPageCount(pageCount + 1);
-      setEntryCount(0);
-      setCurrentPage(await getDictionary());
-    } else setEntryCount(entryCount + 1);
+    else setCurrentWord(currentPage[entryCount].headword.text);
+      if (entryCount === currentPage.length - 1) {
+        setPageCount(pageCount + 1);
+        setEntryCount(0);
+        setCurrentPage('');
+      } else setEntryCount(entryCount + 1);
   };
 
   return (
     <div className="App">
-      <button onClick={generateWord}>hey</button>
+      <button
+        onClick={async () => {
+          await generateWord();
+        }}
+      >
+        hey
+      </button>
       <Word word={currentWord} />
+      <div className="word"></div>
     </div>
   );
 };
