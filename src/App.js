@@ -25,12 +25,20 @@ const App = () => {
     return array;
   };
 
+  const isValidEntry = (word) => {
+    const validPOS = ["noun", "verb", "adjective", "adverb"];
+    if (validPOS.includes(word.headword.pos) &&
+    word.senses[0].translations &&
+    'en' in word.senses[0].translations &&
+    word.senses[0].examples[0].translations &&
+    'en' in word.senses[0].examples[0].translations)
+    return true;
+    else return false;
+  }
+
   const filterResults = (words) => {
     words = words.results;
-    const validPOS = ["noun", "verb", "adjective", "adverb"];
-    words = words.filter(
-      (word) => validPOS.includes(word.headword.pos) && word.version === 1
-    );
+    words = words.filter((word) => isValidEntry(word));
     return words;
   };
 
@@ -43,6 +51,7 @@ const App = () => {
     wordsData = filterResults(wordsData);
     wordsData = shuffleResults(wordsData);
     setCurrentPage(wordsData);
+    console.log(wordsData);
     return wordsData;
   };
 

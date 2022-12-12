@@ -13,7 +13,7 @@ const Word = (props) => {
       <div key={index}>
         <div>{sense.translations.en.text || sense.translations.en.map(printTranslations)}</div>
         <div>{sense.examples[0].text}</div>
-        <div>{sense.examples[0].translations.en.text}</div>
+        <div>{sense.examples[0].translations.en.text || sense.examples[0].translations.en[0].text }</div>
       </div>
     );
   };
