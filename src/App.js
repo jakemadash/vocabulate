@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Word from "./components/Word";
+import './style.css'
 
 const options = {
   method: "GET",
@@ -77,7 +78,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <button onClick={generateWord}>hey</button>
+      <button onClick={generateWord}>Vocabulate!</button>
       <>{word}</>
     </div>
   );
