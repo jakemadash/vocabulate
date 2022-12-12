@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Word from "./components/Word";
 
 const options = {
@@ -15,11 +15,6 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState("");
   const [currentWord, setCurrentWord] = useState("");
 
-  // useEffect(() => {
-  //   const word = document.querySelector('.word')
-  //   word.textContent = currentWord;
-  // });
-
   const shuffleResults = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -33,7 +28,9 @@ const App = () => {
   const filterResults = (words) => {
     words = words.results;
     const validPOS = ["noun", "verb", "adjective", "adverb"];
-    words = words.filter((word) => validPOS.includes(word.headword.pos));
+    words = words.filter(
+      (word) => validPOS.includes(word.headword.pos) && word.version === 1
+    );
     return words;
   };
 
@@ -43,44 +40,36 @@ const App = () => {
       options
     );
     let wordsData = await response.json();
-    return new Promise((resolve) => {
-      wordsData = filterResults(wordsData);
-      wordsData = shuffleResults(wordsData);
-      console.log(wordsData)
-      setCurrentPage(wordsData)
-      resolve(wordsData);
-    });
+    wordsData = filterResults(wordsData);
+    wordsData = shuffleResults(wordsData);
+    setCurrentPage(wordsData);
+    return wordsData;
   };
 
-  let page = ''
+  let page = "";
 
   const generateWord = async () => {
-    console.log(pageCount);
-    console.log(entryCount);
-    console.log(currentPage);
     if (!currentPage) {
-      page = await getDictionary()
-      setCurrentWord(page[entryCount].headword.text);
-    }
-    else setCurrentWord(currentPage[entryCount].headword.text);
-      if (entryCount === currentPage.length - 1) {
-        setPageCount(pageCount + 1);
-        setEntryCount(0);
-        setCurrentPage('');
-      } else setEntryCount(entryCount + 1);
+      page = await getDictionary();
+      setCurrentWord(page[entryCount]);
+    } else setCurrentWord(currentPage[entryCount]);
+    console.log(currentWord);
+    console.log(page);
+    if (entryCount === currentPage.length - 1) {
+      setPageCount(pageCount + 1);
+      setEntryCount(0);
+      setCurrentPage("");
+    } else setEntryCount(entryCount + 1);
   };
+
+  let word = "";
+  if (currentWord) word = <Word entry={currentWord} />;
+  else word = null;
 
   return (
     <div className="App">
-      <button
-        onClick={async () => {
-          await generateWord();
-        }}
-      >
-        hey
-      </button>
-      <Word word={currentWord} />
-      <div className="word"></div>
+      <button onClick={generateWord}>hey</button>
+      <>{word}</>
     </div>
   );
 };
