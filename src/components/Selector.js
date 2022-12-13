@@ -6,8 +6,8 @@ const Selector = ({ setLanguage }) => {
     const language = document.querySelector(".language");
     setLanguage(language.selectedOptions[0].id);
 
-    const word = document.querySelector('.word');
-    word.textContent = ''
+    // const word = document.querySelector('.word');
+    // word.textContent = ''
 
   };
 

@@ -38,7 +38,7 @@ const App = () => {
   };
 
   const isValidEntry = (word) => {
-    console.log(word.senses)
+    console.log(word.senses);
     const validPOS = ["noun", "verb", "adjective", "adverb"];
     const nestedSenses = checkNestedSenses(word.senses);
     if (
@@ -75,9 +75,15 @@ const App = () => {
 
   useEffect(() => {
     async function fetchData() {
+      const button = document.querySelector("button");
+      button.toggleAttribute("disabled");
+      button.classList.toggle("disabled");
+      setCurrentWord("");
       await getDictionary();
-      setPageCount(1)
-      setEntryCount(0)
+      setPageCount(1);
+      setEntryCount(0);
+      button.toggleAttribute("disabled");
+      button.classList.toggle("disabled");
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,7 +96,7 @@ const App = () => {
       page = await getDictionary();
       setCurrentWord(page[entryCount]);
     } else setCurrentWord(currentPage[entryCount]);
-    console.log(currentPage)
+    console.log(currentPage);
     console.log(currentWord);
     console.log(page);
     if (entryCount === currentPage.length - 1) {
@@ -104,17 +110,15 @@ const App = () => {
   if (currentWord) word = <Word entry={currentWord} />;
   else word = null;
 
-  let language = "";
-  if (currentLanguage) language = <Selector setLanguage={setCurrentLanguage} />;
-  else language = null;
-
   console.log(currentLanguage);
 
   return (
     <div className="App-container">
       <div className="App">
         <button onClick={generateWord}>Vocabulate!</button>
-        <>{language}</>
+        <>
+          <Selector setLanguage={setCurrentLanguage} />
+        </>
         <>{word}</>
       </div>
     </div>
