@@ -1,10 +1,14 @@
+.App-container {
+    display: flex;
+    justify-content: center;
+}
+
 .App {
   display: flex;
   flex-direction: column;
-  align-content: center;
-  flex-wrap: wrap;
-  margin: 40px;
+  margin: 40px 500px;
   font-size: 2rem;
+  width: 1000px;
 }
 
 button {
@@ -25,9 +29,10 @@ button:hover {
 .word-header {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
-.word {
+.word-text {
   font-size: 4rem;
 }
 

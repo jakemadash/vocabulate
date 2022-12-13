@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Word from "./components/Word";
+import Selector from "./components/Selector";
 import "./style.css";
 
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "fd76888365mshc55b027be74dc4dp1d4f7ejsn88ecdcc39f3f",
+    "X-RapidAPI-Key": "8bc6f2e1e3msh80403492929db54p161165jsnca3cb7920505",
     "X-RapidAPI-Host": "lexicala1.p.rapidapi.com",
   },
 };
@@ -15,6 +16,7 @@ const App = () => {
   const [pageCount, setPageCount] = useState(1);
   const [currentPage, setCurrentPage] = useState("");
   const [currentWord, setCurrentWord] = useState("");
+  const [currentLanguage, setCurrentLanguage] = useState("sv");
 
   const shuffleResults = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -36,6 +38,7 @@ const App = () => {
   };
 
   const isValidEntry = (word) => {
+    console.log(word.senses)
     const validPOS = ["noun", "verb", "adjective", "adverb"];
     const nestedSenses = checkNestedSenses(word.senses);
     if (
@@ -43,6 +46,7 @@ const App = () => {
       !nestedSenses &&
       word.senses[0].translations &&
       "en" in word.senses[0].translations &&
+      word.senses[0].examples &&
       word.senses[0].examples[0].translations &&
       "en" in word.senses[0].examples[0].translations
     )
@@ -58,7 +62,7 @@ const App = () => {
 
   const getDictionary = async () => {
     const response = await fetch(
-      `https://lexicala1.p.rapidapi.com/search-entries?source=global&language=sv&page=${pageCount}&page-length=30&sample=30&text=`,
+      `https://lexicala1.p.rapidapi.com/search-entries?source=global&language=${currentLanguage}&page=${pageCount}&page-length=30&sample=30&text=`,
       options
     );
     let wordsData = await response.json();
@@ -69,6 +73,16 @@ const App = () => {
     return wordsData;
   };
 
+  useEffect(() => {
+    async function fetchData() {
+      await getDictionary();
+      setPageCount(1)
+      setEntryCount(0)
+    }
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentLanguage]);
+
   let page = "";
 
   const generateWord = async () => {
@@ -76,6 +90,7 @@ const App = () => {
       page = await getDictionary();
       setCurrentWord(page[entryCount]);
     } else setCurrentWord(currentPage[entryCount]);
+    console.log(currentPage)
     console.log(currentWord);
     console.log(page);
     if (entryCount === currentPage.length - 1) {
@@ -89,10 +104,19 @@ const App = () => {
   if (currentWord) word = <Word entry={currentWord} />;
   else word = null;
 
+  let language = "";
+  if (currentLanguage) language = <Selector setLanguage={setCurrentLanguage} />;
+  else language = null;
+
+  console.log(currentLanguage);
+
   return (
-    <div className="App">
-      <button onClick={generateWord}>Vocabulate!</button>
-      <>{word}</>
+    <div className="App-container">
+      <div className="App">
+        <button onClick={generateWord}>Vocabulate!</button>
+        <>{language}</>
+        <>{word}</>
+      </div>
     </div>
   );
 };
