@@ -8,16 +8,52 @@
 }
 
 button {
-    width: 10rem;
-    height: 3rem;
-    font-size: 1.5rem;
-    background-color: transparent;
-    border-radius: 10px;
-    transition: transform .2s;
-    margin-bottom: 50px;
+  width: 10rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border-radius: 10px;
+  transition: transform 0.2s;
+  margin-bottom: 50px;
 }
 
 button:hover {
-    cursor: pointer;
-    transform: scale(1.1);
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.word-header {
+  display: flex;
+  align-items: center;
+}
+
+.word {
+  font-size: 4rem;
+}
+
+.part-of-speech {
+  font-style: italic;
+  font-size: 1.5rem;
+}
+
+.part-of-speech,
+.sense {
+  margin-bottom: 40px;
+}
+
+.example, .example-translation {
+    font-size: 1.5rem;
+    margin-left: 20px;
+}
+
+.translation {
+  margin-bottom: 20px;
+}
+
+.example {
+    margin-bottom: 10px;
+}
+
+.sense {
+    font-family: Arial, Helvetica, sans-serif;
 }

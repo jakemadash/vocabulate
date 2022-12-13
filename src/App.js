@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Word from "./components/Word";
-import './style.css'
+import "./style.css";
 
 const options = {
   method: "GET",
@@ -26,16 +26,29 @@ const App = () => {
     return array;
   };
 
+  const checkNestedSenses = (senses) => {
+    let nested = "";
+    senses.forEach((sense) => {
+      if (sense.senses) nested = true;
+      else nested = false;
+    });
+    return nested;
+  };
+
   const isValidEntry = (word) => {
     const validPOS = ["noun", "verb", "adjective", "adverb"];
-    if (validPOS.includes(word.headword.pos) &&
-    word.senses[0].translations &&
-    'en' in word.senses[0].translations &&
-    word.senses[0].examples[0].translations &&
-    'en' in word.senses[0].examples[0].translations)
-    return true;
+    const nestedSenses = checkNestedSenses(word.senses);
+    if (
+      validPOS.includes(word.headword.pos) &&
+      !nestedSenses &&
+      word.senses[0].translations &&
+      "en" in word.senses[0].translations &&
+      word.senses[0].examples[0].translations &&
+      "en" in word.senses[0].examples[0].translations
+    )
+      return true;
     else return false;
-  }
+  };
 
   const filterResults = (words) => {
     words = words.results;
