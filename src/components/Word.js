@@ -47,7 +47,7 @@ const Word = (props) => {
     return (
       <div key={index} className="sense">
         <div className="translation">{checkTranslationCount(sense)}</div>
-        <div className="example">{sense.examples[0].text}</div>
+        <div className="example" style={color}>{sense.examples[0].text}</div>
         <div className="example-translation">
           {sense.examples[0].translations.en.text}
         </div>
@@ -59,12 +59,16 @@ const Word = (props) => {
     if (word.pronunciation) return `(${word.pronunciation.value})`;
     else return '';
   }
+
+  const color = {
+    color: `${props.color}`
+  }
   console.log(senses);
 
   return (
     <div className="word">
       <div className="word-header">
-        <div className="word-text">{props.entry.headword.text}</div>
+        <div className="word-text" style={color}>{props.entry.headword.text}</div>
         <div>{pronunciationExists(props.entry.headword)}</div>
       </div>
       <div className="part-of-speech">{props.entry.headword.pos}</div>

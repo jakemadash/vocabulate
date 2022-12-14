@@ -6,7 +6,7 @@ import "./style.css";
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "8bc6f2e1e3msh80403492929db54p161165jsnca3cb7920505",
+    "X-RapidAPI-Key": "77e6f90307mshc90abe1a63ef83bp11668ajsn0000e831c88f",
     "X-RapidAPI-Host": "lexicala1.p.rapidapi.com",
   },
 };
@@ -17,6 +17,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState("");
   const [currentWord, setCurrentWord] = useState("");
   const [currentLanguage, setCurrentLanguage] = useState("sv");
+  const [currentColor, setCurrentColor] = useState('#5B85AA')
 
   const shuffleResults = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -84,6 +85,7 @@ const App = () => {
       setEntryCount(0);
       button.toggleAttribute("disabled");
       button.classList.toggle("disabled");
+      button.removeAttribute('hidden')
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -106,19 +108,28 @@ const App = () => {
     } else setEntryCount(entryCount + 1);
   };
 
+  // const changeColor = async () => {
+  //   const coloredElements = document.querySelectorAll('.color')
+  //   coloredElements.forEach((element) => {
+  //       element.style.color = currentColor;
+  //   })
+
   let word = "";
-  if (currentWord) word = <Word entry={currentWord} />;
+  if (currentWord) word = <Word entry={currentWord} color={currentColor} />;
   else word = null;
 
   console.log(currentLanguage);
+  console.log(currentColor)
 
   return (
     <div className="App-container">
       <div className="App">
-        <button onClick={generateWord}>Vocabulate!</button>
-        <>
-          <Selector setLanguage={setCurrentLanguage} />
-        </>
+        <div className="controls">
+          <button hidden onClick={generateWord}>Vocabulate!</button>
+          <>
+            <Selector setLanguage={setCurrentLanguage} setColor={setCurrentColor} />
+          </>
+        </div>
         <>{word}</>
       </div>
     </div>
