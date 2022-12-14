@@ -108,12 +108,6 @@ const App = () => {
     } else setEntryCount(entryCount + 1);
   };
 
-  // const changeColor = async () => {
-  //   const coloredElements = document.querySelectorAll('.color')
-  //   coloredElements.forEach((element) => {
-  //       element.style.color = currentColor;
-  //   })
-
   let word = "";
   if (currentWord) word = <Word entry={currentWord} color={currentColor} />;
   else word = null;
@@ -123,13 +117,13 @@ const App = () => {
 
   return (
     <div className="App-container">
-      <div className="App">
-        <div className="controls">
+      <div className="controls">
           <button hidden onClick={generateWord}>Vocabulate!</button>
           <>
             <Selector setLanguage={setCurrentLanguage} setColor={setCurrentColor} />
           </>
         </div>
+      <div className="App">
         <>{word}</>
       </div>
     </div>
