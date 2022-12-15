@@ -16,7 +16,6 @@ const Word = (props) => {
   const senses = props.entry.senses.filter((sense) => isValid(sense));
 
   const correctText = (translation) => {
-    console.log(translation);
     let text = translation.text;
     const sth = /sth/gi;
     const sb = /sb/gi;
@@ -43,7 +42,6 @@ const Word = (props) => {
   };
 
   const printSenses = (sense, index) => {
-    console.log(sense.translations.en);
     return (
       <div key={index} className="sense">
         <div className="translation">{checkTranslationCount(sense)}</div>
@@ -63,16 +61,15 @@ const Word = (props) => {
   const color = {
     color: `${props.color}`
   }
-  console.log(senses);
 
   return (
     <div className="word">
-      <div className="word-header">
+      <div className="word-header transition">
         <div className="word-text" style={color}>{props.entry.headword.text}</div>
         <div>{pronunciationExists(props.entry.headword)}</div>
       </div>
-      <div className="part-of-speech">{props.entry.headword.pos}</div>
-      <div className="sense">{senses.map(printSenses)}</div>
+      <div className="part-of-speech transition">{props.entry.headword.pos}</div>
+      <div className="sense transition">{senses.map(printSenses)}</div>
     </div>
   );
 };

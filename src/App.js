@@ -39,7 +39,6 @@ const App = () => {
   };
 
   const isValidEntry = (word) => {
-    console.log(word.senses);
     const validPOS = ["noun", "verb", "adjective", "adverb"];
     const nestedSenses = checkNestedSenses(word.senses);
     if (
@@ -70,7 +69,6 @@ const App = () => {
     wordsData = filterResults(wordsData);
     wordsData = shuffleResults(wordsData);
     setCurrentPage(wordsData);
-    console.log(wordsData);
     return wordsData;
   };
 
@@ -98,9 +96,6 @@ const App = () => {
       page = await getDictionary();
       setCurrentWord(page[entryCount]);
     } else setCurrentWord(currentPage[entryCount]);
-    console.log(currentPage);
-    console.log(currentWord);
-    console.log(page);
     if (entryCount === currentPage.length - 1) {
       setPageCount(pageCount + 1);
       setEntryCount(0);
@@ -111,9 +106,6 @@ const App = () => {
   let word = "";
   if (currentWord) word = <Word entry={currentWord} color={currentColor} />;
   else word = null;
-
-  console.log(currentLanguage);
-  console.log(currentColor);
 
   return (
     <div className="App-container">
