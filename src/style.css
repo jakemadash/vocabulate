@@ -20,7 +20,7 @@
   flex-wrap: wrap;
   align-items: center;
   font-size: 2rem;
-  max-width:80%;
+  max-width:90%;
 }
 
 button,
@@ -111,7 +111,7 @@ button:hover {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   :root {
     font-size: 8px;
   }
@@ -120,12 +120,14 @@ button:hover {
     font-size: 3rem;
   }
 
+  .word-text {
+    font-size: 4.5rem;
+  }
+
   .part-of-speech, .example, .example-translation {
     font-size: 2.25rem;
   }
-}
 
-@media (max-width: 650px) {
   .word-header {
     flex-direction: column;
     justify-content: center;

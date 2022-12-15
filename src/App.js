@@ -65,6 +65,9 @@ const App = () => {
       `https://lexicala1.p.rapidapi.com/search-entries?source=global&language=${currentLanguage}&page=${pageCount}&page-length=30&sample=30&text=`,
       options
     );
+    if (!response.ok) {
+      alert("An error occurred. Please refresh the page or try again later.");
+    }
     let wordsData = await response.json();
     wordsData = filterResults(wordsData);
     wordsData = shuffleResults(wordsData);
