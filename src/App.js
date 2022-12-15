@@ -6,7 +6,7 @@ import "./style.css";
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "fd76888365mshc55b027be74dc4dp1d4f7ejsn88ecdcc39f3f",
+    "X-RapidAPI-Key": "8bc6f2e1e3msh80403492929db54p161165jsnca3cb7920505",
     "X-RapidAPI-Host": "lexicala1.p.rapidapi.com",
   },
 };
@@ -72,18 +72,25 @@ const App = () => {
     return wordsData;
   };
 
+  const toggleDisabled = (element) => {
+    element.toggleAttribute("disabled");
+    element.classList.toggle("disabled");
+  };
+
   useEffect(() => {
     async function fetchData() {
-      const button = document.querySelector("button");
-      button.toggleAttribute("disabled");
-      button.classList.toggle("disabled");
+      const vocabulate = document.querySelector("button");
+      const select = document.querySelector("select");
+      toggleDisabled(vocabulate);
+      toggleDisabled(select);
       setCurrentWord("");
       await getDictionary();
       setPageCount(1);
       setEntryCount(0);
-      button.toggleAttribute("disabled");
-      button.classList.toggle("disabled");
-      button.removeAttribute("hidden");
+      toggleDisabled(vocabulate);
+      toggleDisabled(select);
+      vocabulate.removeAttribute("hidden");
+      select.removeAttribute("hidden");
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps

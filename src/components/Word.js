@@ -47,7 +47,7 @@ const Word = (props) => {
         <div className="translation">{checkTranslationCount(sense)}</div>
         <div className="example" style={color}>{sense.examples[0].text}</div>
         <div className="example-translation">
-          {sense.examples[0].translations.en.text}
+          {correctText(sense.examples[0].translations.en)}
         </div>
       </div>
     );

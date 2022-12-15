@@ -9,7 +9,12 @@ const Selector = ({ setLanguage, setColor }) => {
   };
 
   return (
-    <select name="languages" className="language" onChange={handleChange}>
+    <select
+      name="languages"
+      className="language"
+      onChange={handleChange}
+      hidden
+    >
       <option value="Swedish" id="sv" data-color="#5B85AA">
         Swedish
       </option>

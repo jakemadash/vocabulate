@@ -64,6 +64,11 @@ button:hover {
   cursor: default;
 }
 
+.disabled {
+  color: #9f9d9d;
+  border-color: #9f9d9d;
+}
+
 .word-header {
   display: flex;
   align-items: center;
