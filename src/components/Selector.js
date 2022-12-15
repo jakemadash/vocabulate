@@ -3,7 +3,7 @@ import "../style.css";
 
 const Selector = ({ setLanguage, setColor }) => {
   const handleChange = () => {
-    const language = document.querySelector(".language");
+    const language = document.querySelector("select");
     setLanguage(language.selectedOptions[0].id);
     setColor(language.selectedOptions[0].dataset.color);
   };
@@ -11,9 +11,8 @@ const Selector = ({ setLanguage, setColor }) => {
   return (
     <select
       name="languages"
-      className="language"
+      className="hidden"
       onChange={handleChange}
-      hidden
     >
       <option value="Swedish" id="sv" data-color="#5B85AA">
         Swedish

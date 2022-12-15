@@ -6,7 +6,7 @@ import "./style.css";
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "8bc6f2e1e3msh80403492929db54p161165jsnca3cb7920505",
+    "X-RapidAPI-Key": "77e6f90307mshc90abe1a63ef83bp11668ajsn0000e831c88f",
     "X-RapidAPI-Host": "lexicala1.p.rapidapi.com",
   },
 };
@@ -89,8 +89,8 @@ const App = () => {
       setEntryCount(0);
       toggleDisabled(vocabulate);
       toggleDisabled(select);
-      vocabulate.removeAttribute("hidden");
-      select.removeAttribute("hidden");
+      vocabulate.classList.remove("hidden");
+      select.classList.remove("hidden");
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -117,7 +117,7 @@ const App = () => {
   return (
     <div className="App-container">
       <div className="controls">
-        <button hidden onClick={generateWord}>
+        <button className="hidden" onClick={generateWord}>
           Vocabulate!
         </button>
         <>
