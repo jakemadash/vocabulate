@@ -14,37 +14,37 @@ const Selector = ({ setLanguage, setColor }) => {
       className="hidden"
       onChange={handleChange}
     >
-      <option value="Swedish" id="sv" data-color="#5B85AA">
+      <option value="Swedish" id="sv" data-color="#d9b929">
         Swedish
       </option>
-      <option value="Norwegian" id="no" data-color="#90A9B7">
+      <option value="Norwegian" id="no" data-color="#d5b0b5">
         Norwegian
       </option>
-      <option value="Dutch" id="nl" data-color="#9DAD6F">
+      <option value="Dutch" id="nl" data-color="#c3c7d2">
         Dutch
       </option>
-      <option value="Danish" id="dk" data-color="#9B9987">
+      <option value="Danish" id="dk" data-color="#e1f6fd"> 
         Danish
       </option>
-      <option value="German" id="de" data-color="#CC5A71">
+      <option value="German" id="de" data-color="#F7D08A">
         German
       </option>
-      <option value="Polish" id="pl" data-color="#C89B7B">
+      <option value="Polish" id="pl" data-color="#4d5470"> 
         Polish
       </option>
-      <option value="French" id="fr" data-color="#CC444B">
+      <option value="French" id="fr" data-color="#daced1">
         French
       </option>
-      <option value="Italian" id="it" data-color="#36827F">
+      <option value="Italian" id="it" data-color="#000000">
         Italian
       </option>
-      <option value="Spanish" id="es" data-color="#DDA448">
+      <option value="Spanish" id="es" data-color="#fbfbe1">
         Spanish
       </option>
-      <option value="Brazilian Portuguese" id="br" data-color="#FF8A5B">
+      <option value="Brazilian Portuguese" id="br" data-color="#425f7c">
         Brazilian Portuguese
       </option>
-      <option value="Simplified Chinese" id="zh" data-color="#3C787E">
+      <option value="Simplified Chinese" id="zh" data-color="#76e7cd">
         Simplified Chinese
       </option>
       <option value="Japanese" id="ja" data-color="#80475E">

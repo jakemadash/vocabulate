@@ -16,7 +16,7 @@ const Word = (props) => {
   const senses = props.entry.senses.filter((sense) => isValid(sense));
 
   const correctText = (translation) => {
-    let text = translation.text;
+    let text = translation.text || translation[0].text;
     const sth = /sth/gi;
     const sb = /sb/gi;
     text = text.replace(sth, "something");

@@ -6,7 +6,7 @@ import "./style.css";
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "77e6f90307mshc90abe1a63ef83bp11668ajsn0000e831c88f",
+    "X-RapidAPI-Key": "8bc6f2e1e3msh80403492929db54p161165jsnca3cb7920505",
     "X-RapidAPI-Host": "lexicala1.p.rapidapi.com",
   },
 };
@@ -17,7 +17,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState("");
   const [currentWord, setCurrentWord] = useState("");
   const [currentLanguage, setCurrentLanguage] = useState("sv");
-  const [currentColor, setCurrentColor] = useState("#5B85AA");
+  const [currentColor, setCurrentColor] = useState("#d9b929");
 
   const shuffleResults = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
