@@ -2,7 +2,7 @@
 
 ## Description
 
-A fun web app that generates random words in 12 selectable languages. Perfect for language learners and linguistic enthuiasts looking to build their vocabulary. Created with React, CSS, and HTML using the Lexicala API.
+A fun web app that generates random words in 12 selectable languages. Perfect for language learners and linguistic enthusiasts looking to build their vocabulary. Created with React, CSS, and HTML using the Lexicala API.
 
 ## Table of Contents
 
