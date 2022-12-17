@@ -16,6 +16,7 @@ const App = () => {
   const [pageCount, setPageCount] = useState(1);
   const [currentPage, setCurrentPage] = useState("");
   const [currentWord, setCurrentWord] = useState("");
+  // default language Swedish
   const [currentLanguage, setCurrentLanguage] = useState("sv");
   const [currentColor, setCurrentColor] = useState("#d9b929");
 
@@ -61,6 +62,7 @@ const App = () => {
   };
 
   const getDictionary = async () => {
+    // get entries based on current language and page count
     const response = await fetch(
       `https://lexicala1.p.rapidapi.com/search-entries?source=global&language=${currentLanguage}&page=${pageCount}&page-length=30&sample=30&text=`,
       options
@@ -69,6 +71,7 @@ const App = () => {
       alert("An error occurred. Please refresh the page or try again later.");
     }
     let wordsData = await response.json();
+    // modify results and assign to currentPage
     wordsData = filterResults(wordsData);
     wordsData = shuffleResults(wordsData);
     setCurrentPage(wordsData);
@@ -81,21 +84,23 @@ const App = () => {
   };
 
   useEffect(() => {
-    async function fetchData() {
+    async function handleLanguageChange() {
       const vocabulate = document.querySelector("button");
       const select = document.querySelector("select");
       toggleDisabled(vocabulate);
       toggleDisabled(select);
+
       setCurrentWord("");
       await getDictionary();
       setPageCount(1);
       setEntryCount(0);
+
       toggleDisabled(vocabulate);
       toggleDisabled(select);
       vocabulate.classList.remove("hidden");
       select.classList.remove("hidden");
     }
-    fetchData();
+    handleLanguageChange();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage]);
 
@@ -106,6 +111,7 @@ const App = () => {
       page = await getDictionary();
       setCurrentWord(page[entryCount]);
     } else setCurrentWord(currentPage[entryCount]);
+    // once on last page of results, increment page count, reset entryCount and currentPage so that new data is fetched
     if (entryCount === currentPage.length - 1) {
       setPageCount(pageCount + 1);
       setEntryCount(0);
