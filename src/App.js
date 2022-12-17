@@ -6,7 +6,7 @@ import "./style.css";
 const options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": "8bc6f2e1e3msh80403492929db54p161165jsnca3cb7920505",
+    "X-RapidAPI-Key": "fd76888365mshc55b027be74dc4dp1d4f7ejsn88ecdcc39f3f",
     "X-RapidAPI-Host": "lexicala1.p.rapidapi.com",
   },
 };
