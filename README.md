@@ -1,8 +1,8 @@
-# Resume Builder ![Project License Badge](https://img.shields.io/badge/license-GNU-brightgreen)
+# Vocabulate ![Project License Badge](https://img.shields.io/badge/license-GNU-brightgreen)
 
 ## Description
 
-A fun web app that generates random words in 12 selectable languages. Perfect for language learners and linguistic enthuiasts looking to build their vocabulary. Created with React, CSS, and HTML using Lexicala API.
+A fun web app that generates random words in 12 selectable languages. Perfect for language learners and linguistic enthuiasts looking to build their vocabulary. Created with React, CSS, and HTML using the Lexicala API.
 
 ## Table of Contents
 
