@@ -45,7 +45,6 @@ const Word = (props) => {
   };
 
   const printSenses = (sense, index) => {
-    console.log(sense);
     return (
       <div key={index} className="sense">
         <div className="translation">{checkTranslationCount(sense)}</div>
