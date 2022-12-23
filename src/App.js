@@ -5,11 +5,11 @@ import Selector from "./components/Selector";
 import "./style.css";
 
 const options = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "fd76888365mshc55b027be74dc4dp1d4f7ejsn88ecdcc39f3f",
-    "X-RapidAPI-Host": "lexicala1.p.rapidapi.com",
-  },
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '8888a35f67mshe9abc398caf0a2fp128a8bjsnbda3d824e5fb',
+		'X-RapidAPI-Host': 'lexicala1.p.rapidapi.com'
+	}
 };
 
 const App = () => {
@@ -69,12 +69,15 @@ const App = () => {
       options
     );
     if (!response.ok) {
-      alert("An error occurred. Please refresh the page or try again later.");
+      const app = document.querySelector('.App')
+      app.textContent = "An error occurred. Please refresh the page or try again later.";
+      return null;
     }
     let wordsData = await response.json();
     // modify results and assign to currentPage
     wordsData = filterResults(wordsData);
     wordsData = shuffleResults(wordsData);
+    console.log(wordsData)
     setCurrentPage(wordsData);
     return wordsData;
   };
@@ -137,7 +140,7 @@ const App = () => {
           />
         </>
       </div>
-      <div className="App">
+      <div className="App" aria-label="App">
         <>{word}</>
       </div>
     </div>
