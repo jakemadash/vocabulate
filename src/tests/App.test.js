@@ -2,7 +2,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
-import "@testing-library/jest-dom"
 import App from "../App";
 
 describe("App component", () => {
@@ -25,14 +24,5 @@ describe("App component", () => {
      await render(<App />);
       expect(screen.getByRole('generic', {name: 'App'}).textContent).toMatch('An error occurred. Please refresh the page or try again later.')
     })
-
-    // it("renders data from Word component", async () => {
-    //   <Word /> = jest.fn((null))
-    //   const response = new Response(null, {status: 404})
-    //   global.fetch = jest.fn(() => Promise.resolve(response)
-    // );
-    //  await render(<App />);
-    //   expect(screen.getByRole('generic', {name: 'App'}).textContent).toMatch('An error occurred. Please refresh the page or try again later.')
-    // })
     
   });
