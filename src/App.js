@@ -5,11 +5,11 @@ import Selector from "./components/Selector";
 import "./style.css";
 
 const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '8888a35f67mshe9abc398caf0a2fp128a8bjsnbda3d824e5fb',
-		'X-RapidAPI-Host': 'lexicala1.p.rapidapi.com'
-	}
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": process.env.REACT_APP_API_KEY,
+    "X-RapidAPI-Host": "lexicala1.p.rapidapi.com",
+  },
 };
 
 const App = () => {
@@ -69,15 +69,16 @@ const App = () => {
       options
     );
     if (!response.ok) {
-      const app = document.querySelector('.App')
-      app.textContent = "An error occurred. Please refresh the page or try again later.";
+      const app = document.querySelector(".App");
+      app.textContent =
+        "An error occurred. Please refresh the page or try again later.";
       return null;
     }
     let wordsData = await response.json();
     // modify results and assign to currentPage
     wordsData = filterResults(wordsData);
     wordsData = shuffleResults(wordsData);
-    console.log(wordsData)
+    console.log(wordsData);
     setCurrentPage(wordsData);
     return wordsData;
   };
