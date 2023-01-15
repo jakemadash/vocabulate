@@ -90,16 +90,19 @@ const App = () => {
 
   useEffect(() => {
     async function handleLanguageChange() {
+      // disable buttons while new page of results is loading
       const vocabulate = document.querySelector("button");
       const select = document.querySelector("select");
       toggleDisabled(vocabulate);
       toggleDisabled(select);
 
+      // load new page
       setCurrentWord("");
       await getDictionary();
       setPageCount(1);
       setEntryCount(0);
-
+      
+      // reactivate buttons (and unhide on first render)
       toggleDisabled(vocabulate);
       toggleDisabled(select);
       vocabulate.classList.remove("hidden");
