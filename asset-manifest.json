@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/vocabulate/static/css/main.a404d29b.css",
-    "main.js": "/vocabulate/static/js/main.53fb1ff9.js",
+    "main.js": "/vocabulate/static/js/main.c7d2bfc4.js",
     "index.html": "/vocabulate/index.html",
     "main.a404d29b.css.map": "/vocabulate/static/css/main.a404d29b.css.map",
-    "main.53fb1ff9.js.map": "/vocabulate/static/js/main.53fb1ff9.js.map"
+    "main.c7d2bfc4.js.map": "/vocabulate/static/js/main.c7d2bfc4.js.map"
   },
   "entrypoints": [
     "static/css/main.a404d29b.css",
-    "static/js/main.53fb1ff9.js"
+    "static/js/main.c7d2bfc4.js"
   ]
 }
