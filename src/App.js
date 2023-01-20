@@ -24,9 +24,7 @@ const App = () => {
   const shuffleResults = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+      [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
   };
@@ -57,9 +55,9 @@ const App = () => {
   };
 
   const filterResults = (words) => {
-    words = words.results;
-    words = words.filter((word) => isValidEntry(word));
-    return words;
+    const wordsResults = words.results;
+    const filteredWords = wordsResults.filter((word) => isValidEntry(word));
+    return filteredWords;
   };
 
   const getDictionary = async () => {
@@ -74,13 +72,12 @@ const App = () => {
         "An error occurred. Please refresh the page or try again later.";
       return null;
     }
-    let wordsData = await response.json();
+    const wordsData = await response.json();
     // modify results and assign to currentPage
-    wordsData = filterResults(wordsData);
-    wordsData = shuffleResults(wordsData);
-    console.log(wordsData);
-    setCurrentPage(wordsData);
-    return wordsData;
+    const filteredWords = filterResults(wordsData);
+    const shuffledWords = shuffleResults(filteredWords);
+    setCurrentPage(shuffledWords);
+    return shuffledWords;
   };
 
   const toggleDisabled = (element) => {
@@ -101,7 +98,7 @@ const App = () => {
       await getDictionary();
       setPageCount(1);
       setEntryCount(0);
-      
+
       // reactivate buttons (and unhide on first render)
       toggleDisabled(vocabulate);
       toggleDisabled(select);
