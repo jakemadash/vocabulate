@@ -9,11 +9,7 @@ const Selector = ({ setLanguage, setColor }) => {
   };
 
   return (
-    <select
-      name="languages"
-      className="hidden"
-      onChange={handleChange}
-    >
+    <select name="languages" className="hidden" onChange={handleChange}>
       <option value="Swedish" id="sv" data-color="#d9b929">
         Swedish
       </option>
@@ -23,13 +19,13 @@ const Selector = ({ setLanguage, setColor }) => {
       <option value="Dutch" id="nl" data-color="#c3c7d2">
         Dutch
       </option>
-      <option value="Danish" id="dk" data-color="#e1f6fd"> 
+      <option value="Danish" id="dk" data-color="#e1f6fd">
         Danish
       </option>
       <option value="German" id="de" data-color="#F7D08A">
         German
       </option>
-      <option value="Polish" id="pl" data-color="#4d5470"> 
+      <option value="Polish" id="pl" data-color="#4d5470">
         Polish
       </option>
       <option value="French" id="fr" data-color="#daced1">

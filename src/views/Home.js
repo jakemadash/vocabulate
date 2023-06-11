@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import Word from "./components/Word";
-import Selector from "./components/Selector";
-import "./style.css";
+import Word from "../components/Word";
+import Selector from "../components/Selector";
+import "../style.css";
 
 const options = {
   method: "GET",
@@ -12,7 +12,7 @@ const options = {
   },
 };
 
-const App = () => {
+const Home = () => {
   const [entryCount, setEntryCount] = useState(0);
   const [pageCount, setPageCount] = useState(1);
   const [currentPage, setCurrentPage] = useState("");
@@ -148,4 +148,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;
